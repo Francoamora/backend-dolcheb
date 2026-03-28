@@ -98,14 +98,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # --- CONFIGURACIONES PRO PARA NEXT.JS ---
 
-# Permiso para que Next.js (puerto 3000) pueda pedir datos
+# Permiso para que Next.js pueda pedir datos
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost:3001",
+    "https://dolcheb.com.ar",
+    "https://www.dolcheb.com.ar",
+    "https://proyecto-chef.vercel.app",
 ]
 
 # Configuración para guardar y servir las fotos que suba el Chef
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # =========================================================
 # CONFIGURACIÓN PREMIUM DEL PANEL (DJANGO JAZZMIN)
