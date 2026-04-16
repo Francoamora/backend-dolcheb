@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # --- NUESTRAS APPS Y LIBRERÍAS ---
     'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
     'api',
 ]
@@ -96,6 +97,21 @@ STATIC_URL = 'static/'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+}
+
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=8),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+}
+
 # --- CONFIGURACIONES PRO PARA NEXT.JS ---
 
 # Permiso para que Next.js pueda pedir datos
@@ -105,6 +121,13 @@ CORS_ALLOWED_ORIGINS = [
     "https://dolcheb.com.ar",
     "https://www.dolcheb.com.ar",
     "https://proyecto-chef.vercel.app",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "authorization",
+    "content-type",
+    "origin",
+    "x-csrftoken",
 ]
 
 # Configuración para guardar y servir las fotos que suba el Chef
